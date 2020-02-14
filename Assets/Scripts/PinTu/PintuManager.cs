@@ -7,7 +7,7 @@ public class PintuManager : MonoBehaviour
 
     void Start()
     {
-        
+        System.Console.WriteLine();
     }
 
     void Update()
