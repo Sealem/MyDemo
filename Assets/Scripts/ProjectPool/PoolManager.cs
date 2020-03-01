@@ -6,33 +6,39 @@ public class PoolManager : MonoBehaviour
 {
     private List<GameObject> gameObjects;
     public static PoolManager Instance;
-    public int PoolMax = 10;
+    public int PoolMax = 1;
 
     public GameObject prefab;
-
+    GameObject localObj;
     void Awake()
     {
         Instance = this;
         gameObjects = new List<GameObject>();
     }
 
+    //取出对象
     public GameObject GetGameObject()
     {
         if (gameObjects.Count <= 0)
         {
             return Instantiate(prefab);
         }
-        GameObject localObj = gameObjects[0];
+
+        localObj = gameObjects[0];
         gameObjects.RemoveAt(0);
         return localObj;
     }
 
+    //存入对象
     public void SetGameObject(GameObject obj)
     {
+        obj.SetActive(false);
         if (gameObjects.Count >= PoolMax)
         {
-            
+            Destroy(obj);
+            return;
         }
+        gameObjects.Add(obj);
     }
 
 }
