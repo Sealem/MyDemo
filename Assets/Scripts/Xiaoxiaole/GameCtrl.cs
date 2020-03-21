@@ -226,22 +226,17 @@ public class GameCtrl : MonoBehaviour
             //将清除对象从列表移除
             allItems[item.itemRow, item.itemCol] = null;
         }
-
-        //检测是否已经执行了清除动画
-        //while (true)
-        //{
-        //    yield return 0;
-        //}
-
-        //延迟0.2s后开始下落
-        yield return new WaitForSeconds(0.2f);
-        yield return StartCoroutine(ItemDrop());
         //延迟0.3s后开始回收对象
         yield return new WaitForSeconds(0.3f);
         foreach (var item in tmpBoomList)
         {
             Destroy(item.gameObject);
         }
+        //延迟0.2s后开始下落
+        yield return new WaitForSeconds(0.2f);
+        yield return StartCoroutine(ItemDrop());
+
+
     }
 
     /// <summary>
