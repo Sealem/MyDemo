@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using AStart;
 public class PlanePos : MonoBehaviour,IPointerDownHandler,IPointerUpHandler,IDragHandler
 {
     public Camera cameraa;
@@ -54,7 +55,8 @@ public class PlanePos : MonoBehaviour,IPointerDownHandler,IPointerUpHandler,IDra
             startObj = Instantiate(Cell);
             startObj.transform.SetParent(Map.transform);
             startObj.name = "startObj";
-            startObj.transform.position = hit.point;
+            startObj.transform.position = AStarManager.Instance.GetCell(hit.point).pos;
+
             return;
         }
 
